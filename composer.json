@@ -1,0 +1,23 @@
+{
+    "name": "clown/aliyun",
+    "version": "1.0.0",
+    "description": "阿里云的接口",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "clown",
+            "email": "812827345@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "clown\\aliyun\\": "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
+}
