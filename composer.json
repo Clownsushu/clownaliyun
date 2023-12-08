@@ -11,7 +11,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "alibabacloud/dysmsapi-20170525": "2.0.24"
+    },
     "autoload": {
         "psr-4": {
             "clown\\aliyun\\": "src/"
