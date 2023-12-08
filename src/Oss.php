@@ -62,10 +62,14 @@ class Oss
      * 文件上传
      * @param $local_file_path string 本地文件路径
      * @param $upload_file_path string 文件保存的路径名称和类型 不能以/开头
+     * @param $direct_url bool 是否返回直接访问地址
      * @return false|array
      */
-    public function uploadFile($local_file_path = '', $upload_file_path = '')
+    public function uploadFile($local_file_path = '', $upload_file_path = '', $direct_url = false)
     {
+
+        //去除左边开头的/
+        $upload_file_path = ltrim($upload_file_path, '/');
 
         try{
             $result = $this->oss_client->uploadFile($this->bucket, $upload_file_path, $local_file_path);
@@ -75,6 +79,10 @@ class Oss
             return false;
         }
 
+        if($direct_url && isset($result['info']['url'])){
+            return $result['info']['url'];
+        }
+
         return $result;
     }
 
@@ -82,11 +90,14 @@ class Oss
      * 字符串上传
      * @param $content mixed 要上传的内容
      * @param $upload_file_path string 文件保存的路径名称和类型 不能以/开头
+     * @param $direct_url bool 是否返回直接访问地址
      * @return false|null
      */
-    public function uploadString($content, $upload_file_path = '')
+    public function uploadString($content, $upload_file_path = '', $direct_url = false)
     {
         if(empty($content)) return false;
+        //去除左边开头的/
+        $upload_file_path = ltrim($upload_file_path, '/');
 
         if(!is_string($content)){
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
@@ -98,6 +109,10 @@ class Oss
             //记录日志
             $this->error_msg = $e->getMessage();
             return false;
+        }
+
+        if($direct_url && isset($result['info']['url'])){
+            return $result['info']['url'];
         }
 
         return $result;

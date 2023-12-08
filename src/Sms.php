@@ -45,7 +45,7 @@ class Sms
     public $error_msg = '';
 
     /**
-     * 初始化
+     * 构造函数
      * @param $accessKeyId string 阿里云AccessKey
      * @param $accessKeySecret string $accessKeySecret
      * @param string $signName 签名名称
@@ -54,6 +54,11 @@ class Sms
      */
     public function __construct($accessKeyId, $accessKeySecret, $signName, $endpoint = 'dysmsapi.aliyuncs.com')
     {
+        if(!$accessKeyId) throw new \Exception('请传入accessKeyId参数');
+
+        if(!$accessKeySecret) throw new \Exception('请传入accessKeySecret参数');
+
+        if(!$signName) throw new \Exception('请传入签名signName参数');
 
         $this->accessKeyId = $accessKeyId;
 
@@ -108,10 +113,7 @@ class Sms
         $sendSmsRequest = new SendSmsRequest($config);
         try{
             $res = $this->client->sendSmsWithOptions($sendSmsRequest, new RuntimeOptions([]));
-            if($res->body->message == "OK" && $res->body->code == "OK"){
-                return true;
-            }else{
-                //记录日志
+            if($res->body->message != "OK" || $res->body->code != "OK"){
                 $this->error_msg = $res->body->message;
                 return false;
             }
