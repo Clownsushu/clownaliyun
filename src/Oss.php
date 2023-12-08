@@ -25,7 +25,7 @@ class Oss
     protected $bucket = '';
 
     /**
-     * @var mixed|string 端点地址
+     * @var mixed|string 阿里云域名
      */
     protected $endpoint = 'oss-cn-chengdu.aliyuncs.com';
 
@@ -38,7 +38,14 @@ class Oss
      * @var string 错误信息
      */
     public $error_msg = '';
-
+    /**
+     * 构造函数
+     * @param $accessKeyId string 阿里云AccessKey ID
+     * @param $accessKeySecret string 阿里云AccessKey Secret
+     * @param $bucket string 阿里云空间名称
+     * @param $endpoint string 阿里云域名
+     * @throws \Exception
+     */
     public function __construct($accessKeyId, $accessKeySecret, $bucket,  $endpoint = 'oss-cn-chengdu.aliyuncs.com')
     {
         if(!$accessKeyId) throw new \Exception('请传入accessKeyId参数');
@@ -79,9 +86,7 @@ class Oss
             return false;
         }
 
-        if($direct_url && isset($result['info']['url'])){
-            return $result['info']['url'];
-        }
+        if($direct_url && isset($result['info']['url'])) return $result['info']['url'];
 
         return $result;
     }
@@ -111,9 +116,7 @@ class Oss
             return false;
         }
 
-        if($direct_url && isset($result['info']['url'])){
-            return $result['info']['url'];
-        }
+        if($direct_url && isset($result['info']['url'])) return $result['info']['url'];
 
         return $result;
     }

@@ -46,10 +46,10 @@ class Sms
 
     /**
      * 构造函数
-     * @param $accessKeyId string 阿里云AccessKey
-     * @param $accessKeySecret string $accessKeySecret
-     * @param string $signName 签名名称
-     * @param $endpoint string 域名
+     * @param $accessKeyId string 阿里云AccessKey ID
+     * @param $accessKeySecret string 阿里云AccessKey Secret
+     * @param string $signName 短信签名名称
+     * @param $endpoint string 阿里云域名
      * @throws \Exception
      */
     public function __construct($accessKeyId, $accessKeySecret, $signName, $endpoint = 'dysmsapi.aliyuncs.com')
@@ -97,12 +97,12 @@ class Sms
      * 您好您的验证码为: ${code}, 打死也不要告诉别人哦!] 可以传参为['code' => 111111]
      * @return bool
      */
-    public function sendSms($phone = '', $template_code = '', $params = [])
+    public function sendSms($phone = '', $template_code = '', $params = []) :bool
     {
         if(empty($phone)) return false;
 
         if(empty($template_code)) return false;
-
+        //组装发送的参数
         $config = [
             'phoneNumbers' => $phone,
             'signName' => $this->signName,
