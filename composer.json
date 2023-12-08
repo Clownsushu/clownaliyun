@@ -13,7 +13,7 @@
     "minimum-stability": "dev",
     "require": {
         "alibabacloud/dysmsapi-20170525": "2.0.24",
-        "aliyuncs/oss-sdk-php": "2.6.0"
+        "aliyuncs/oss-sdk-php": "dev-master"
     },
     "autoload": {
         "psr-4": {
