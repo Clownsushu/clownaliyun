@@ -40,6 +40,11 @@ class Sms
     protected $signName = '';
 
     /**
+     * @var string 返回错误信息
+     */
+    public $error_msg = '';
+
+    /**
      * 初始化
      * @param $accessKeyId string 阿里云AccessKey
      * @param $accessKeySecret string $accessKeySecret
@@ -101,20 +106,22 @@ class Sms
         ];
 
         $sendSmsRequest = new SendSmsRequest($config);
-
         try{
-            $this->client->sendSmsWithOptions($sendSmsRequest, new RuntimeOptions([]));
+            $res = $this->client->sendSmsWithOptions($sendSmsRequest, new RuntimeOptions([]));
+            if($res->body->message == "OK" && $res->body->code == "OK"){
+                return true;
+            }else{
+                //记录日志
+                $this->error_msg = $res->body->message;
+                return false;
+            }
         }catch (\Exception $error){
             if (!($error instanceof TeaError)) {
                 $error = new TeaError([], $error->getMessage(), $error->getCode(), $error);
             }
             // 如有需要，请打印 error
             Utils::assertAsString($error->message);
-            //记录日志
-            writeLogToFileAppend(getBaseFileName(__FILE__) . '.txt', [
-                'message' => $error->message,
-                'data' => $config
-            ]);
+            $this->error_msg = $error->message;
             return false;
         }
 

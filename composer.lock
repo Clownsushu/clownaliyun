@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a45325ca012a3303faac697f8db19a1",
+    "content-hash": "edbc65fa354d8690dd44c9b0d3841691",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -563,6 +563,58 @@
                 "source": "https://github.com/alibabacloud-sdk-php/tea-xml/tree/0.2.4"
             },
             "time": "2022-08-02T04:12:58+00:00"
+        },
+        {
+            "name": "aliyuncs/oss-sdk-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
+                "reference": "572d0f8e099e8630ae7139ed3fdedb926c7a760f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/572d0f8e099e8630ae7139ed3fdedb926c7a760f",
+                "reference": "572d0f8e099e8630ae7139ed3fdedb926c7a760f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "satooshi/php-coveralls": "*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OSS\\": "src/OSS"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aliyuncs",
+                    "homepage": "http://www.aliyun.com"
+                }
+            ],
+            "description": "Aliyun OSS SDK for PHP",
+            "homepage": "http://www.aliyun.com/product/oss/",
+            "support": {
+                "issues": "https://github.com/aliyun/aliyun-oss-php-sdk/issues",
+                "source": "https://github.com/aliyun/aliyun-oss-php-sdk/tree/v2.6.0"
+            },
+            "time": "2022-08-03T08:06:01+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
